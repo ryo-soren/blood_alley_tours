@@ -1,0 +1,23 @@
+# # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# # dependencies
+# /blood_alley_tour/node_modules
+# /blood_alley_tour/.pnp
+# /blood_alley_tour/.pnp.js
+
+# # testing
+# /blood_alley_tour//coverage
+
+# # production
+# /blood_alley_tour//build
+
+# # misc
+# /blood_alley_tour/.DS_Store
+# /blood_alley_tour/.env.local
+# /blood_alley_tour/.env.development.local
+# /blood_alley_tour/.env.test.local
+# /blood_alley_tour/.env.production.local
+
+# /blood_alley_tour/npm-debug.log*
+# /blood_alley_tour/yarn-debug.log*
+# /blood_alley_tour/yarn-error.log*
