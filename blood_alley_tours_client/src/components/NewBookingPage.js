@@ -15,7 +15,6 @@ import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 import FormErrors from './FormErrors';
 import moment from "moment"
-// import { parseISO, format } from 'date-fns';
 
 function NewBookingPage() {
     const [firstName, setFirstName] = useState('')
@@ -77,10 +76,7 @@ function NewBookingPage() {
         return day === 0 || day === 5 || day === 6
     }
 
-    // const stripeKey = loadStripe(toString(Booking.key()))
-
     return (
-
 
         <Container className="py-3 mx-auto">
             <Card className="mb-5">
@@ -126,7 +122,6 @@ function NewBookingPage() {
                         </Form.Group>
 
                         <Row>
-
 
                         <Col sm={6}>
                                 <Form.Group className="mb-3" controlId="date">
@@ -184,9 +179,9 @@ function NewBookingPage() {
                                 </Form.Group>
                             </Col>
                         </Row>
+                        
                         <Row>
-    
-                        <Col sm={4}>
+                            <Col sm={6}>
                                 <Form.Group className="mb-3" controlId="partySize">
                                     <Form.Label className='text-muted'>Party Size - $14/guest</Form.Label>
                                     <Form.Select aria-label="Default select example" onChange={event => {
@@ -206,7 +201,7 @@ function NewBookingPage() {
                                     <FormErrors forField="party_size" errors={errors}/>                       
                                 </Form.Group>
                             </Col>                             
-                        <Col sm={4}>
+                        <Col sm={6}>
                             <fieldset disabled>
                                 <Form.Group className="mb-3" controlId="firstName">
                                     <Form.Label className='text-muted'>Price - Tax Included</Form.Label>
@@ -216,8 +211,11 @@ function NewBookingPage() {
                                     </InputGroup>
                                 </Form.Group>
                             </fieldset>
-                            </Col>                            
-                            <Col sm={4}>
+                            </Col>
+                        </Row>
+
+                        <Row>
+                            <Col>
                                 <Form.Group className="mb-3" controlId="firstName">
                                     <Form.Label className='text-muted'>Credit Card</Form.Label>
                                     <CardElement className="form-control"/>
