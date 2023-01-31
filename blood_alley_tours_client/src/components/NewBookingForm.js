@@ -14,7 +14,7 @@ import FormErrors from './FormErrors';
 import moment from "moment"
 
 const NewBookingForm = props => {
-
+    
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
@@ -185,7 +185,7 @@ const NewBookingForm = props => {
                                 <Form.Label className='text-muted'>Price - Tax Included</Form.Label>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Text>$</InputGroup.Text>
-                                    <Form.Control aria-label="Amount (to the nearest dollar)" defaultValue={amount} />
+                                    <Form.Control aria-label="Amount (to the nearest dollar)" value={amount}/>
                                 </InputGroup>
                             </Form.Group>
                         </fieldset>

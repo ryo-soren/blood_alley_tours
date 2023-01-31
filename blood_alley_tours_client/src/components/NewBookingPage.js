@@ -43,7 +43,10 @@ function NewBookingPage() {
 
     return (
 
-        <NewBookingForm errors={errors} handleSubmit={(params)=>newBooking(params)} />
+        <NewBookingForm 
+        errors={errors} 
+        handleSubmit={(params)=>newBooking(params)} 
+        />
 
     );  
 }
