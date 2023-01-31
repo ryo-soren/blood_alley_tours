@@ -6,7 +6,6 @@ const FormErrors = props => {
     let filteredErrors = errors;
 
     if(forField){
-        console.log(`Errors: ${filteredErrors}, forField: ${forField}`)
         filteredErrors = errors.filter(
             err => err.field === forField
         )

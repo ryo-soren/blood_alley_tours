@@ -1,6 +1,65 @@
+import { useState } from "react";
+import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
+import DatePicker from "react-datepicker";
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
+import InputGroup from 'react-bootstrap/InputGroup';
+import { Container } from "react-bootstrap";
+import { Card } from "react-bootstrap";
+import FormErrors from './FormErrors';
+import moment from "moment"
+
 const NewBookingForm = props => {
 
+    const [firstName, setFirstName] = useState('')
+    const [lastName, setLastName] = useState('')
+    const [email, setEmail] = useState('')
+    const [phoneNumber, setPhoneNumber] = useState('')
+    const [partySize, setPartySize] = useState(2)
+    const [date, setDate] = useState(new Date())
+    const [time, setTime] = useState()
 
+    const [amount, setAmount] = useState(28)
+
+    const stripe = useStripe()
+    const elements = useElements()
+
+    const {handleSubmit, errors} = props
+
+    const getDataAndSubmit = (event) => {
+
+        event.preventDefault()
+
+        if (!stripe || !elements) {
+            return;
+        }
+        
+        const card = elements.getElement(CardElement);
+        
+        const params = {
+            first_name: firstName,
+            last_name: lastName,
+            phone_number: phoneNumber,
+            email: email,
+            party_size: partySize,
+            date: moment(date).format('MMM Do YYYY'),
+            time: time,
+            amount: amount,
+            card: card
+        }
+
+        handleSubmit(params)
+
+    }
+
+    const isWeekend = (date) => {
+        const day = date.getDay()
+        return day === 0 || day === 5 || day === 6
+    }
 
     return(
 
@@ -13,12 +72,8 @@ const NewBookingForm = props => {
         <Card.Body className="bg-dark text-white">
 
         <Row>
-            {/* <Col sm={5}>
-                <h1 className='text-dark text-center pt-3'>Location</h1>
-            </Col> */}
-
             <Col className="m-auto">
-                <Form className='m-4' onSubmit={handleSubmit}>
+                <Form className='m-4' onSubmit={getDataAndSubmit}>
 
                     <Form.Group className="mb-3" controlId="firstName">
                         <Form.Label className='text-muted'>First Name</Form.Label>
@@ -58,8 +113,6 @@ const NewBookingForm = props => {
                                 dateFormat="dd-MM-yyyy" 
                                 placeholderText="dd-mm-yyyy"
                                 filterDate={isWeekend}
-                                // minDate={new Date("06-01-2023")}
-                                // maxDate={new Date("09-30-2023")}
                                 onChange={date => {setDate(date)}}
                                 />
                                 <FormErrors forField="date" errors={errors}/>
@@ -106,8 +159,7 @@ const NewBookingForm = props => {
                         </Col>
                     </Row>
                     <Row>
-
-                    <Col sm={4}>
+                        <Col sm={6}>
                             <Form.Group className="mb-3" controlId="partySize">
                                 <Form.Label className='text-muted'>Party Size - $14/guest</Form.Label>
                                 <Form.Select aria-label="Default select example" onChange={event => {
@@ -127,19 +179,21 @@ const NewBookingForm = props => {
                                 <FormErrors forField="party_size" errors={errors}/>                       
                             </Form.Group>
                         </Col>                             
-                    <Col sm={4}>
+                        <Col sm={6}>
                         <fieldset disabled>
-                            <Form.Group className="mb-3" controlId="firstName">
+                            <Form.Group className="mb-3" controlId="price">
                                 <Form.Label className='text-muted'>Price - Tax Included</Form.Label>
                                 <InputGroup className="mb-3">
                                     <InputGroup.Text>$</InputGroup.Text>
-                                    <Form.Control aria-label="Amount (to the nearest dollar)" value={amount} />
+                                    <Form.Control aria-label="Amount (to the nearest dollar)" defaultValue={amount} />
                                 </InputGroup>
                             </Form.Group>
                         </fieldset>
-                        </Col>                            
-                        <Col sm={4}>
-                            <Form.Group className="mb-3" controlId="firstName">
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col>
+                            <Form.Group className="mb-3" controlId="creditCard">
                                 <Form.Label className='text-muted'>Credit Card</Form.Label>
                                 <CardElement className="form-control"/>
                                 <FormErrors forField="creditCard" errors={errors}/>
