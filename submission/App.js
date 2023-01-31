@@ -7,9 +7,9 @@ import Header from "./components/Header";
 import HomePage from "./components/HomePage";
 import NewBookingPage from "./components/NewBookingPage";
 import Footer from "./components/Footer";
-import {loadStripe} from '@stripe/stripe-js';
+import { Booking } from "./requests";
 import {Elements} from '@stripe/react-stripe-js';
-// import ThanksForBookingPage from './components/ThanksForBooking';
+import {loadStripe} from '@stripe/stripe-js';
 
 const App = () => {
   const stripeKey = loadStripe("pk_test_51MC4lkLD1jX0t9yxmT7kR1kxjH7HUq9k1qEXC0Ugxf2AYoUB7uSUav8ttFDCz0O749MGVtBhYrRVAZLRzF08crFz00wLokXzd8")
@@ -20,6 +20,7 @@ const App = () => {
     <div className="fill bg-dark">
 
       <Header/>
+
       <Routes>
 
         <Route exact path="/" element={
@@ -30,15 +31,12 @@ const App = () => {
             <NewBookingPage/>
           </Elements>
         }/>
-        <Route exact path="/stripe" element={
+        <Route exact path="/about_us" element={
           <AboutPage/>
         }/>
         <Route exact path="contact_us" element={
           <ContactPage/>
         }/>
-        {/* <Route exact path="/thank_you" element={
-          <ThanksForBookingPage/>
-        }/> */}
 
       </Routes>
       <Footer/>
