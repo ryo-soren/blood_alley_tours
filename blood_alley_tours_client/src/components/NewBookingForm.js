@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import DatePicker from "react-datepicker";
 import PhoneInput from 'react-phone-number-input'
@@ -14,21 +13,16 @@ import FormErrors from './FormErrors';
 import moment from "moment"
 
 const NewBookingForm = props => {
-    
-    const [firstName, setFirstName] = useState('')
-    const [lastName, setLastName] = useState('')
-    const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [partySize, setPartySize] = useState(2)
-    const [date, setDate] = useState(new Date())
-    const [time, setTime] = useState()
-
-    const [amount, setAmount] = useState(28)
 
     const stripe = useStripe()
     const elements = useElements()
 
-    const {handleSubmit, errors} = props
+    const {
+        handleSubmit, nextStep, errors, firstName, setFirstName, 
+        lastName, setLastName, phoneNumber, setPhoneNumber, email, setEmail, 
+        partySize, setPartySize, date, setDate, time, setTime, 
+        amount, setAmount
+    } = props
 
     const getDataAndSubmit = (event) => {
 
@@ -67,13 +61,13 @@ const NewBookingForm = props => {
         <Card className="mb-5">
         <Card.Header className="bg-dark text-white">
                 <p className="h3">Booking Info</p>
-                <strong className="">Fill out the info below to book a date</strong>
+                <strong className="">Fill out the info below to book a tour</strong>
         </Card.Header>
         <Card.Body className="bg-dark text-white">
 
         <Row>
             <Col className="m-auto">
-                <Form className='m-4' onSubmit={getDataAndSubmit}>
+                {/* <Form className='m-4' onSubmit={getDataAndSubmit}> */}
 
                     <Form.Group className="mb-3" controlId="firstName">
                         <Form.Label className='text-muted'>First Name</Form.Label>
@@ -201,10 +195,12 @@ const NewBookingForm = props => {
                         </Col>
                     </Row>
 
-                    <Button variant="primary" type="submit" className="ms-3">
-                        Book Now
+                    <Button variant="primary" type="submit" className="ms-3"
+                        onClick={() => nextStep()}
+                    >
+                        Proceed to Payment
                     </Button>
-                </Form>
+                {/* </Form> */}
             </Col>
         </Row>
         </Card.Body>
