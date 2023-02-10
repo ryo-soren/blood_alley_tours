@@ -5,7 +5,6 @@ class CreateBookings < ActiveRecord::Migration[7.0]
       t.string :last_name
       t.string :phone_number
       t.string :email
-      t.string :credit_card_number
       t.integer :party_size
       t.integer :price
       t.string :date

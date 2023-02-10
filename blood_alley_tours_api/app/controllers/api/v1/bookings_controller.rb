@@ -8,31 +8,42 @@ class Api::V1::BookingsController < Api::ApplicationController
 
     def create
         puts "Params: #{params}"
-        token = params[:token]
-        price = 12.50
-        tax = 1.12
+        # token = params[:token]
 
         @booking = Booking.new(booking_params)
-        @booking.price = ((@booking.party_size * price * tax)*100)
 
-        charge = Stripe::Charge.create({
-            amount: @booking.price,
-            currency: 'cad',
-            source: token,
-            description: "Booking #{@booking.id}"
-        })
+        # begin
+            charge = Stripe::Charge.create({
+                amount: @booking.price * 100,
+                currency: 'cad',
+                # source: token,
+                source: params[:token],
+                description: "Booking #{@booking.id}"
+            })
+            puts "******#{charge}******"
+            @booking.charge_id = charge.id
+            @booking.charge_status = charge.status
+            @booking.save!
+            BookingMailer.new_booking(@booking).deliver_now
+            # Stripe::PaymentIntent.create(params)
+        #   rescue Stripe::CardError => e
 
-        @booking.charge_id = charge.id
-        @booking.charge_status = charge.status
-        @booking.save!
-        BookingMailer.new_booking(@booking).deliver_now
-
+        #   rescue Stripe::InvalidRequestError => e
+        #     puts "*************"
+        #     puts "e.error: #{e.error}"
+        #     puts "*************"
+        #   rescue Stripe::StripeError => e
+        #     puts "Another problem occurred, maybe unrelated to Stripe."
+        #   else
+        # end
+        
         render(
             json: {
                 booking: @booking
                 # charge: charge
             }
         )
+
     end
 
     private
@@ -45,7 +56,8 @@ class Api::V1::BookingsController < Api::ApplicationController
             :email,
             :party_size,
             :date,
-            :time
+            :time,
+            :price
         )
     end
 end

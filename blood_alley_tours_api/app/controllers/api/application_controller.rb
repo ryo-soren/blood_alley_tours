@@ -4,6 +4,7 @@ class Api::ApplicationController < ApplicationController
 
     rescue_from StandardError, with: :standard_error
     rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    # rescue_from Stripe::CardError, with: :stripe_payment_required
 
     def not_found
         render(
@@ -51,6 +52,22 @@ class Api::ApplicationController < ApplicationController
                 errors: errors
             },
             status: 422
+        )
+    end
+
+    def stripe_payment_required(e)
+
+        render(
+            json: {
+                status: 402,
+                errors: [
+                    {
+                        type: e.class.to_s,
+                        message: e.error.message
+                    }
+                ]
+            },
+            status: 402
         )
     end
 
