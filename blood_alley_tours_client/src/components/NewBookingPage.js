@@ -10,13 +10,14 @@ function NewBookingPage() {
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('number')
-    const [partySize, setPartySize] = useState(2)
+    const [phoneNumber, setPhoneNumber] = useState()
+    const [partySize, setPartySize] = useState(1)
     const [date, setDate] = useState(new Date())
     const [time, setTime] = useState()
-    const [price, setPrice] = useState(28)
+    const [price, setPrice] = useState(Math.round(partySize*12.50*1.12))
     const [errors, setErrors] = useState()
     const [step, setStep] = useState(1)
+    const [loading, setLoading] = useState(false)
 
     const stripe = useStripe()
     const navigate = useNavigate()
@@ -30,14 +31,12 @@ function NewBookingPage() {
     }
 
     const newBooking = async (event) => {
-
+        
         const result = await stripe.createToken(event.card);
 
         if (result.error) {
-            console.log(result);
-            console.log(errors);
+            setLoading(false)
             setErrors(result.error.message)
-            console.log(errors);
         } else {
             const params = {
                 first_name: firstName,
@@ -53,9 +52,9 @@ function NewBookingPage() {
 
             Booking.create(params).then(booking => {
                 console.log(booking);
+                setLoading(false)
                 if (booking.errors) {
-                    console.log(errors)
-                    setErrors(booking.errors[0].message)
+                    setErrors(booking.errors.message)
                     console.log(errors);
                 } else{
                     navigate(`/`)
@@ -102,6 +101,8 @@ function NewBookingPage() {
                 date={date}
                 time={time}
                 price={price}
+                loading={loading}
+                setLoading={(event)=>setLoading(event)}
                 />
             );
               

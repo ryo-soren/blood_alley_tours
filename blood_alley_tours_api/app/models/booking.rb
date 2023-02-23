@@ -7,4 +7,5 @@ class Booking < ApplicationRecord
     validates :party_size, numericality: { greater_or_equal_to: 2 } 
     validates :date, presence: true
     validates :time, presence: true
+    validates :price, numericality: true
 end

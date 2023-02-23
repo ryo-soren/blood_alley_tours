@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import Spinner from 'react-bootstrap/Spinner'
 import { Container } from "react-bootstrap";
 import { Card } from "react-bootstrap";
 // import FormErrors from './FormErrors';
@@ -15,7 +16,7 @@ const PaymentPage = props => {
     const elements = useElements()
 
     const {
-        errors,
+        errors, loading, setLoading,
         handleSubmit, prevStep, firstName, 
         lastName, phoneNumber, email, 
         partySize, date, time, 
@@ -26,17 +27,16 @@ const PaymentPage = props => {
     const getDataAndSubmit = (event) => {
 
         event.preventDefault()
+        
+        setLoading(true)
 
         if (!stripe || !elements) {
             return;
         }
         
-        const card = elements.getElement(CardElement);
-        
         const params = {
-            card: card
+            card: elements.getElement(CardElement)
         }
-
         handleSubmit(params)
     }
 
@@ -132,11 +132,30 @@ const PaymentPage = props => {
                     >
                         Return
                     </Button>
-                    <Button variant="primary" type="submit" className="mx-1 my-3"
-                        onClick={(event) => getDataAndSubmit(event)}
-                    >
-                        Confirm
-                    </Button>
+
+                    {
+                        loading ? (
+                            <Button variant="primary" type="submit" className="mx-1 my-3" disabled
+                            >
+                                <Spinner
+                                as="span"
+                                animation="border"
+                                size="sm"
+                                role="status"
+                                aria-hidden="true"
+                                />
+                                <span className="mx-1">
+                                    Processing
+                                </span>
+                            </Button>
+                        ) : (
+                            <Button variant="primary" type="submit" className="mx-1 my-3"
+                            onClick={(event) => getDataAndSubmit(event)}
+                            >
+                                Confirm
+                            </Button>
+                        )
+                    }
                     </Form.Group>
 
 

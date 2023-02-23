@@ -30,10 +30,6 @@ const NewBookingForm = props => {
             if (new Date().getDate() === date.getDate() && new Date().getMonth() === date.getMonth()) {
                 setDate('')
             }
-            
-            if (phoneNumber === 'number') {
-                setPhoneNumber('')
-            }
             event.stopPropagation();
         }else{
             console.log(date);
@@ -63,7 +59,7 @@ const NewBookingForm = props => {
                         <Form noValidate validated={validated} onSubmit={handleSubmit}>
 
                             <Form.Group className="mb-3" controlId="firstName">
-                                <Form.Label className='text-muted'>First Name</Form.Label>
+                                <Form.Label className='text-muted'>First Name *</Form.Label>
                                 <Form.Control 
                                 required 
                                 type="text"
@@ -71,12 +67,12 @@ const NewBookingForm = props => {
                                 value={firstName} 
                                 onChange={event => setFirstName(event.currentTarget.value)} />
                                 <Form.Control.Feedback type="invalid">
-                                    First name is required
+                                    First name is required 
                                 </Form.Control.Feedback>
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="lastName">
-                                <Form.Label className='text-muted'>Last Name</Form.Label>
+                                <Form.Label className='text-muted'>Last Name *</Form.Label>
                                 <Form.Control 
                                 required 
                                 type="text" 
@@ -92,23 +88,17 @@ const NewBookingForm = props => {
                             <Form.Group className="mb-3" controlId="phoneNumber">
                                 <Form.Label className='text-muted'>Phone Number</Form.Label>
                                 <PhoneInput 
-                                required 
+                                 
                                 className="form-control" 
                                 placeholder="Enter phone number" 
                                 value={phoneNumber}
                                 onChange={setPhoneNumber}
                                 />
-                            {
-                                phoneNumber ? (
-                                        false
-                                    ) : (
-                                        <div className='error-message'>Please provide a valid phone number</div>                                    
-                                )
-                            }
+   
                             </Form.Group>
 
                             <Form.Group className="mb-3" controlId="email">
-                                <Form.Label className='text-muted'>Email address</Form.Label>
+                                <Form.Label className='text-muted'>Email Address *</Form.Label>
                                 <Form.Control 
                                 required 
                                 type="email" 
@@ -129,12 +119,11 @@ const NewBookingForm = props => {
                                 <Col sm={6}>
 
                                     <Form.Group className="mb-3" controlId="date">
-                                        <Form.Label className='text-muted'>Date</Form.Label>
+                                        <Form.Label className='text-muted'>Date *</Form.Label>
                                         <DatePicker 
                                         required
                                         className="form-control"
                                         selected={date} 
-                                        // dateFormat="dd-MM-yyyy" 
                                         placeholderText="dd/mm/yyyy"
                                         filterDate={isWeekend}
                                         todayButton="Return to Today"
@@ -156,7 +145,7 @@ const NewBookingForm = props => {
                                 <Col sm={6}>
 
                                     <Form.Group className="mb-3" controlId="time">
-                                        <Form.Label className='text-muted'>Time</Form.Label>
+                                        <Form.Label className='text-muted'>Time *</Form.Label>
                                         <Row>
 
                                             <Col sm={6}>
@@ -225,6 +214,7 @@ const NewBookingForm = props => {
                                             setPrice(Math.round(event.currentTarget.value*12.50*1.12))
                                         }}
                                         >
+                                            <option value={1}>1</option>
                                             <option value={2}>2</option>
                                             <option value={3}>3</option>
                                             <option value={4}>4</option>
@@ -252,7 +242,7 @@ const NewBookingForm = props => {
 
                             </Row>
 
-                            <Button variant="primary" type="submit" className="ms-3"
+                            <Button variant="primary" type="submit" className=""
                             >
                                 Proceed to Payment
                             </Button>
