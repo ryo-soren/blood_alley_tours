@@ -1,39 +1,70 @@
 class Api::V1::BookingsController < Api::ApplicationController
     def show
-        @booking = Booking.find(params[:id])
+        booking = Booking.find(params[:id])
         render(
-            json: @booking
+            json: booking
         )
     end
 
     def create
         puts "Params: #{params}"
-        token = params[:token]
-        price = 12.50
-        tax = 1.12
 
-        @booking = Booking.new(booking_params)
-        @booking.price = ((@booking.party_size * price * tax)*100)
+        booking = Booking.new(booking_params)
+        charge = Stripe::Charge.create(
+            {
+                amount: booking.price * 100,
+                currency: 'cad',
+                source: params[:token],
+                description: "Booking #{booking.id}"
+            }
+        )
+            
+        if charge
 
-        charge = Stripe::Charge.create({
-            amount: @booking.price,
-            currency: 'cad',
-            source: token,
-            description: "Booking #{@booking.id}"
-        })
+            booking.charge_id = charge.id
+            booking.charge_status = charge.status
+            booking.save!
 
-        @booking.charge_id = charge.id
-        @booking.charge_status = charge.status
-        @booking.save!
-        BookingMailer.new_booking(@booking).deliver_now
+            BookingMailer.new_booking(booking).deliver_now
+
+        end
 
         render(
             json: {
-                booking: @booking
-                # charge: charge
+                booking: booking
             }
         )
     end
+
+    # def create
+    #     puts "Params: #{params}"
+    #     booking = Booking.new(booking_params)
+
+    #     if booking.save!
+
+    #         charge = Stripe::Charge.create(
+    #             {
+    #                 amount: booking.price * 100,
+    #                 currency: 'cad',
+    #                 source: params[:token],
+    #                 description: "Booking #{booking.id}"
+    #             }
+    #         )
+
+    #         booking.charge_id = charge.id
+    #         booking.charge_status = charge.status
+    #         booking.save!
+
+    #         BookingMailer.new_booking(booking).deliver_now
+
+    #     end
+
+    #     render(
+    #         json: {
+    #             booking: booking
+    #         }
+    #     )
+    # end
 
     private
 
@@ -45,7 +76,8 @@ class Api::V1::BookingsController < Api::ApplicationController
             :email,
             :party_size,
             :date,
-            :time
+            :time,
+            :price
         )
     end
 end

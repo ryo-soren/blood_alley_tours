@@ -19,7 +19,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_234056) do
     t.string "last_name"
     t.string "phone_number"
     t.string "email"
-    t.string "credit_card_number"
     t.integer "party_size"
     t.integer "price"
     t.string "date"

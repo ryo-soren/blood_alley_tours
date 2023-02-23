@@ -9,6 +9,7 @@ import NewBookingPage from "./components/NewBookingPage";
 import Footer from "./components/Footer";
 import {loadStripe} from '@stripe/stripe-js';
 import {Elements} from '@stripe/react-stripe-js';
+import FormExample from './components/FormExample';
 // import ThanksForBookingPage from './components/ThanksForBooking';
 
 const App = () => {
@@ -16,7 +17,6 @@ const App = () => {
 
   return(
     <>
-    {/* {console.log(stripeKey)} */}
     <div className="fill bg-dark">
 
       <Header/>
@@ -36,9 +36,9 @@ const App = () => {
         <Route exact path="contact_us" element={
           <ContactPage/>
         }/>
-        {/* <Route exact path="/thank_you" element={
-          <ThanksForBookingPage/>
-        }/> */}
+        <Route exact path="/form" element={
+          <FormExample/>
+        }/>
 
       </Routes>
       <Footer/>
