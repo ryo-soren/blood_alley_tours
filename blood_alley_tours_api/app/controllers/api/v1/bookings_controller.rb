@@ -8,63 +8,32 @@ class Api::V1::BookingsController < Api::ApplicationController
 
     def create
         puts "Params: #{params}"
-
         booking = Booking.new(booking_params)
-        charge = Stripe::Charge.create(
-            {
-                amount: booking.price * 100,
-                currency: 'cad',
-                source: params[:token],
-                description: "Booking #{booking.id}"
-            }
-        )
+
+        if booking.save!
             
-        if charge
+            charge = Stripe::Charge.create(
+                {
+                    amount: booking.price * 100,
+                    currency: 'cad',
+                    source: params[:token],
+                    description: "Booking #{booking.id}"
+                }
+            )
 
             booking.charge_id = charge.id
             booking.charge_status = charge.status
             booking.save!
 
             BookingMailer.new_booking(booking).deliver_now
-
+            
+            render(
+                json: {
+                    booking: booking
+                }
+            )
         end
-
-        render(
-            json: {
-                booking: booking
-            }
-        )
     end
-
-    # def create
-    #     puts "Params: #{params}"
-    #     booking = Booking.new(booking_params)
-
-    #     if booking.save!
-
-    #         charge = Stripe::Charge.create(
-    #             {
-    #                 amount: booking.price * 100,
-    #                 currency: 'cad',
-    #                 source: params[:token],
-    #                 description: "Booking #{booking.id}"
-    #             }
-    #         )
-
-    #         booking.charge_id = charge.id
-    #         booking.charge_status = charge.status
-    #         booking.save!
-
-    #         BookingMailer.new_booking(booking).deliver_now
-
-    #     end
-
-    #     render(
-    #         json: {
-    #             booking: booking
-    #         }
-    #     )
-    # end
 
     private
 

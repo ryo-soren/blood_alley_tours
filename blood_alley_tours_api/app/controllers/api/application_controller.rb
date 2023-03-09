@@ -21,6 +21,14 @@ class Api::ApplicationController < ApplicationController
 
     def standard_error(error)
         logger.error(error.full_message)
+        
+        if error.class.to_s == "Stripe::CardError"
+            booking = Booking.last
+            booking.charge_id = error.request_id
+            booking.charge_status = error.message
+            booking.save!
+        end
+        
 
         render(
             json: {
