@@ -1,0 +1,10 @@
+
+.FormErrors{
+  color: red;
+  padding-left: 1.2em;
+  margin: 0 0 5px 0;
+  font-size: 0.8em;
+}
+ .logo{
+  max-width: 100px;
+ }

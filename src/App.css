@@ -1,0 +1,20 @@
+.fill{
+  height: 100%;
+}
+
+.block{
+  height: 250px
+}
+
+.fixed{
+  position: fixed;
+  bottom: 75px;
+  right: 70px;
+}
+
+.error-message{
+  width: 100%;
+  margin-top: 0.25rem;
+  font-size: .875em;
+  color: #dc3545
+}
