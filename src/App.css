@@ -18,3 +18,9 @@
   font-size: .875em;
   color: #dc3545
 }
+
+.single-line-label{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
+}

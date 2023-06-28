@@ -116,7 +116,7 @@ const NewBookingForm = props => {
 
                             <Row>
 
-                                <Col sm={6}>
+                                <Col xs={12} lg={6}>
 
                                     <Form.Group className="mb-3" controlId="date">
                                         <Form.Label className='text-muted'>Date *</Form.Label>
@@ -142,14 +142,14 @@ const NewBookingForm = props => {
 
                                 </Col>
 
-                                <Col sm={6}>
+                                <Col xs={12} lg={6}>
 
                                     <Form.Group className="mb-3" controlId="time">
                                         <Form.Label className='text-muted'>Time *</Form.Label>
                                         <Row>
 
-                                            <Col sm={6}>
-                                                {["10:00 AM", "11:00 AM"].map((hour) => {
+                                            <Col xs={6}>
+                                                {["10:00 AM", "11:00 AM", "12:00 PM"].map((hour) => {
                                                     return(
                                                         <Form.Check
                                                         required
@@ -163,7 +163,7 @@ const NewBookingForm = props => {
                                                         />
                                                     )
                                                 })}
-                                                <Form.Check 
+                                                {/* <Form.Check 
                                                     required
                                                     type='radio' 
                                                     name="hour"
@@ -174,10 +174,10 @@ const NewBookingForm = props => {
                                                     onChange={event => setTime(event.target.value)}
                                                     feedback="Please choose a time"
                                                     feedbackType="invalid"
-                                                />
+                                                /> */}
                                             </Col>
 
-                                            <Col sm={6}>
+                                            <Col xs={6}>
                                                 {["1:00 PM", "2:00 PM", "3:00 PM"].map((hour) => {
                                                     return(
                                                         <Form.Check 
@@ -195,6 +195,10 @@ const NewBookingForm = props => {
                                             </Col>
 
                                         </Row>
+
+                                        <Form.Control.Feedback type="invalid">
+                                            Last name is required
+                                        </Form.Control.Feedback>
                                     </Form.Group>
 
                                 </Col>
