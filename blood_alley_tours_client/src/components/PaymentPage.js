@@ -52,14 +52,14 @@ const PaymentPage = props => {
                 <Card.Body className="bg-dark text-white">
 
                     <Row>
-                        <div className="mx-auto w-75 border-bottom d-flex">
-                            <Col sm={6}>
+                        <div className="mx-auto border-bottom d-flex">
+                            <Col xs={6} sm={6}>
                                 <div className="p-5 text-center">
                                     First Name: {firstName}
                                 </div>                        
                             </Col>
 
-                            <Col sm={6}>
+                            <Col xs={6} sm={6}>
                                 <div className="p-5 text-center">
                                     Last Name: {lastName}
                                 </div>
@@ -68,15 +68,15 @@ const PaymentPage = props => {
                     </Row>
 
                     <Row>
-                        <div className="mx-auto w-75 border-bottom d-flex">
-                            <Col sm={6}>
-                                <div className="p-5 text-center">
+                        <div className="mx-auto border-bottom d-flex">
+                            <Col xs={6} sm={6}>
+                                <div className="py-5 text-center">
                                     Phone Number: {phoneNumber}
                                 </div>                        
                             </Col>
 
-                            <Col sm={6}>
-                                <div className="p-5 text-center">
+                            <Col xs={6} sm={6}>
+                                <div className="py-5 text-center">
                                     Email: {email}
                                 </div>
                             </Col>
@@ -84,15 +84,15 @@ const PaymentPage = props => {
                     </Row>
 
                     <Row>
-                        <div className="mx-auto w-75 border-bottom d-flex">
-                            <Col sm={6}>
-                                <div className="mx-auto w-75 p-5 text-center">
-                                        Date: {date.toDateString()}
+                        <div className="mx-auto border-bottom d-flex">
+                            <Col xs={6} sm={6}>
+                                <div className="mx-auto p-5 text-center">
+                                    Date: {date.toDateString()}
                                 </div>
                             </Col>
 
-                            <Col sm={6}>
-                                <div className="mx-auto w-75 p-5 text-center">
+                            <Col xs={6} sm={6}>
+                                <div className="mx-auto p-5 text-center">
                                     Time: {time}
                                 </div>
                             </Col>
@@ -100,22 +100,22 @@ const PaymentPage = props => {
                     </Row>
 
                     <Row>
-                        <div className="mx-auto w-75 border-bottom d-flex">
-                            <Col sm={6}>
-                                <div className="mx-auto w-75 p-5 text-center">
+                        <div className="mx-auto border-bottom d-flex">
+                            <Col xs={6} sm={6}>
+                                <div className="mx-auto p-5 text-center">
                                     Guests: {partySize}
                                 </div>
                             </Col>
 
-                            <Col sm={6}>
-                                <div className="mx-auto w-75 p-5 text-center">
+                            <Col xs={6} sm={6}>
+                                <div className="mx-auto p-5 text-center">
                                     Price: {`$${price}`}
                                 </div>
                             </Col>
                         </div>
                     </Row>
 
-                    <Form.Group className="mx-auto my-3 w-75" controlId="creditCard">
+                    <Form.Group className="mx-auto my-3" controlId="creditCard">
                         <Form.Label className='text-muted'>Credit Card</Form.Label>
                         <CardElement className="form-control"/>
                         {/* <FormErrors forField="creditCard" errors={errors}/> */}

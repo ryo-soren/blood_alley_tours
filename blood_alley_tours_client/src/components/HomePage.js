@@ -14,7 +14,7 @@ const HomePage = () => {
             <h3 className='text-center m-5'>Blood Alley Tours</h3>
             <Row>
                 <Col>
-                <p className='mx-5'>Gastown is the historic neighbourhood in with a rich history. 
+                <p className='mx-5 text-center'>Gastown is the historic neighbourhood in with a rich history. 
                 As the first downtown core of the city, the neighbourhood has transitioned into a 
                 centre of innovation and truly memorable experiences, for locals and tourists alike, 
                 while maintaining a strong connection to its history. Containing something for 
@@ -24,7 +24,7 @@ const HomePage = () => {
                 </Col>
 
                 <Col>
-                <p className="my-auto mx-5">We will be taking you on a 1 hour long tour of various 
+                <p className="my-auto mx-5 text-center">We will be taking you on a 1 hour long tour of various 
                 attractions gastown has to offer. This includes sites such as the steam clock
                 We will be starting off at the waterfront station where we will all meet, then make
                 our way over to the sea wall to start. </p>
