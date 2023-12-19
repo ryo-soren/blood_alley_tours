@@ -1,70 +1,46 @@
-# Getting Started with Create React App
+# Blood Alley Tours
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## What is it?
 
-## Available Scripts
+The project was built for Blood Alley Tours, a new company offeing walking tours in the Gastown neighbourhood of Vancouver, British Columbia. They requested for a simply designed booking site.
 
-In the project directory, you can run:
+It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the back end is built on a seperate repository called "[blood_alley_tours_api](https://github.com/ryo-soren/blood_alley_tours_api)". 
+
+The two projects are to be run at the same time.
+
+## What does it do?
+
+The site has the ability for potential customers to both book and pay for a walking tour, as well as reaching out to the Blood Alley Tours team for any general inquiries. Upon booking, customers get an email with the details of their booking.
+
+## Notable Features
+
+*Used React’s state feature to separate the customer form and info review page, before making payments 
+*Implemented Stripe payment processing in both the frontend and backend to ensure proper encryption 
+*Manipulated React’s calendar component to exclude all weekdays except Fridays and the current date, for customers looking to book a tour
+*Active-Mailer gem is being used to handle email communication with customers, on all new booking as well as for general inquiries
+
+## How is it build?
+
+* Front-End: React.js
+* Back-End: Ruby on Rails API, Active-Mailer
+* Database: PostgreSQL
+* Dependencies:
+  * "date-fns": "^2.29.3",
+  * "moment": "^2.29.4",
+  * "react-datepicker": "^4.8.0",
+  * "react-phone-number-input": "^3.2.13",
+
+## Clone the repository
+
+Follow the steps in [this link](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository) to clone the repository
+
+## Set up the project for development
+
+### `npm install`
+
+Installs all dependencies required for the projects full functionality
 
 ### `npm start`
 
 Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Open [http://localhost:5500](http://localhost:5500) to view it in your browser.
