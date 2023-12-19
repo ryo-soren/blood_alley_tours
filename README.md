@@ -38,9 +38,9 @@ Follow the steps in [this link](https://docs.github.com/en/repositories/creating
 
 ### `npm install`
 
-Installs all dependencies required for the projects full functionality
+Installs all dependencies required for the project's full functionality
 
 ### `npm start`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
 Open [http://localhost:5500](http://localhost:5500) to view it in your browser.
