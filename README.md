@@ -14,10 +14,10 @@ The site has the ability for potential customers to both book and pay for a walk
 
 ## Notable Features
 
-*Used React’s state feature to separate the customer form and info review page, before making payments 
-*Implemented Stripe payment processing in both the frontend and backend to ensure proper encryption 
-*Manipulated React’s calendar component to exclude all weekdays except Fridays and the current date, for customers looking to book a tour
-*Active-Mailer gem is being used to handle email communication with customers, on all new booking as well as for general inquiries
+* Used React’s state feature to separate the customer form and info review page, before making payments 
+* Implemented Stripe payment processing in both the frontend and backend to ensure proper encryption 
+* Manipulated React’s calendar component to exclude all weekdays except Fridays and the current date, for customers looking to book a tour
+* Active-Mailer gem is being used to handle email communication with customers, on all new booking as well as for general inquiries
 
 ## How is it build?
 
