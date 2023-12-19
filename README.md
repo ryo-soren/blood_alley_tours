@@ -2,7 +2,7 @@
 
 ## What is it?
 
-The project was built for Blood Alley Tours, a new company offeing walking tours in the Gastown neighbourhood of Vancouver, British Columbia. They requested for a simply designed booking site.
+The project was built for Blood Alley Tours, a new company offering walking tours in the Gastown neighbourhood of Vancouver, British Columbia. They requested for a simply designed booking site.
 
 It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and the back end is built on a seperate repository called "[blood_alley_tours_api](https://github.com/ryo-soren/blood_alley_tours_api)". 
 
